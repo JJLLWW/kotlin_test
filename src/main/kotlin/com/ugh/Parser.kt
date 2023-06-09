@@ -1,4 +1,4 @@
-package ugh
+package com.ugh
 
 class Parser {
 }

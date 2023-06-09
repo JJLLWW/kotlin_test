@@ -1,5 +1,6 @@
-package ugh
+package com.ugh
 
+import com.ugh.Language
 import java.util.Optional
 
 // slightly verbose interface, should it strip whitespace if this mangles
