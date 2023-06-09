@@ -6,10 +6,9 @@ import java.util.Optional
 // slightly verbose interface, should it strip whitespace if this mangles
 // the position in the string
 class Tokeniser(private val lang: Language = Language()) {
-    data class Success(val tokens: List<Token>)
     enum class ErrorType { NONE, INVALID_TOKEN }
     data class Result(
-        val result: Optional<Success>,
+        val result: Optional<List<Token>>,
         val errType: ErrorType,
         val errMsg: String)
     fun tokenise(line: String): Result {
@@ -47,7 +46,7 @@ class Tokeniser(private val lang: Language = Language()) {
             pos = firstMatch.range.last + 1
         }
         return Result(
-            result = Optional.of(Success(tokens)),
+            result = Optional.of(tokens),
             errType = ErrorType.NONE,
             errMsg = ""
         )
