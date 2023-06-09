@@ -17,19 +17,19 @@ private val DefaultMap: HashMap<Regex, Token.Type> = hashMapOf(
 )
 
 class Language(
-    val LangMap: HashMap<Regex, Token.Type> = DefaultMap
+    val langMap: HashMap<Regex, Token.Type> = DefaultMap
 ) {
-    fun AsInt(word: String, type: Token.Type): Optional<Int> {
-        if(Token.GetKotlinType(type) != Token.KotlinType.INT) {
+    fun asInt(word: String, type: Token.Type): Optional<Int> {
+        if(Token.getKotlinType(type) != Token.KotlinType.INT) {
             return Optional.empty()
         }
-        when (type) {
+        return when (type) {
             Token.Type.NUM -> {
                 val int = word.toIntOrNull()
-                return if(int == null) Optional.empty() else Optional.of(int)
+                if(int == null) Optional.empty() else Optional.of(int)
             }
             else -> {
-                return Optional.empty()
+                Optional.empty()
             }
         }
     }

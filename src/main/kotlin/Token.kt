@@ -10,7 +10,7 @@ class Token(val type: Type) {
     var StoredInt: Optional<Int> = Optional.empty()
         private set
     companion object {
-        fun GetKotlinType(type: Type): KotlinType {
+        fun getKotlinType(type: Type): KotlinType {
             return when (type) {
                 Type.NUM -> KotlinType.INT
                 else -> KotlinType.NONE
