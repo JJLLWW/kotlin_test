@@ -2,6 +2,9 @@ package com.ugh
 
 import java.util.Optional
 
+// shouldn't this be with the test code - don't know if it can be used for
+// anything else
+
 /**
  * Reads from a string of the form LPAR NUM_1 ADD NUM_2 RPAR -> (1+2).
  * Will throw on bad input as mainly meant to be used for testing.

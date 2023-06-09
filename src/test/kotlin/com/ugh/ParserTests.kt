@@ -2,8 +2,18 @@ package com.ugh
 
 import org.junit.jupiter.api.Test
 class ParserTests {
-    @Test fun tokenIRSuccess1() {
-        // how to get a valid list of tokens without painfully hardcoding it
-        // could read it from file like NUM_1 ADD LPAR NUM_2 MULT NUM_3 RPAR
+    @Test fun tokenIRSanity() {
+        // don't want the test to be dependent on the tokeniser working
+        val tokens = tokensFromString("LPAR ADD LPAR ADD RPAR ADD RPAR")
+        val IR = TokensIR(tokens)
+        assert(IR.isValid())
+        assert(IR.closingParen[0] == 6)
+        assert(IR.closingParen[2] == 4)
+    }
+    @Test fun parserSanity() {
+        val tokens = tokensFromString("LPAR ADD LPAR ADD RPAR ADD RPAR")
+        val parser = Parser()
+        val enode = parser.parseTokens(tokens)
+        assert(true)
     }
 }
