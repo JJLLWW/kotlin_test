@@ -66,7 +66,12 @@ class Parser {
         // TODO: flatten to binary tree
         return Result(Optional.of(root), ErrorType.NONE,  "")
     }
+    // will work correctly on well formed input, but if the input is ill-formed the behaviour
+    // is a bit strange
     private fun recursivePreParse(tokensIR: TokensIR, lower: Int, upper: Int): ExprNode {
+        if(upper <= lower) {
+            return ExprNode.getNIL()
+        }
         if(lower + 1 == upper) {
             return ExprNode.fromToken(tokensIR[lower])
         }
@@ -86,5 +91,10 @@ class Parser {
             }
         }
         return root
+    }
+    // this needs context information about which operators are higher precedence
+    // which I havent implemented yet
+    private fun flattenTree(root: ExprNode) {
+        return
     }
 }

@@ -11,7 +11,7 @@ class ParserTests {
         assert(IR.closingParen[2] == 4)
     }
     @Test fun parserSanity() {
-        val tokens = tokensFromString("LPAR ADD LPAR ADD RPAR ADD RPAR")
+        val tokens = tokensFromString("LPAR NUM_1 ADD NUM_2 RPAR ADD NUM_3")
         val parser = Parser()
         val enode = parser.parseTokens(tokens)
         assert(true)

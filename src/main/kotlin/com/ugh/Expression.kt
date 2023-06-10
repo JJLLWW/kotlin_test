@@ -10,6 +10,30 @@ class ExprNode(var type: Type) {
     fun addChild(node: ExprNode): Unit {
         children.add(node)
     }
+    fun addChilds(nodes: List<ExprNode>): Unit {
+        for (node in nodes) {
+            addChild(node)
+        }
+    }
+    // return bool which determines if function has succeeded
+    fun liftChildToRoot(i: Int): Boolean {
+        if(type != Type.ROOT || i !in children.indices) {
+            return false
+        }
+        // sublist(i, j) gives elements with indeces in [i, j)
+        val left = children.subList(0, i)
+        val right = children.subList(i+1, children.size)
+        val node: ExprNode = children[i]
+        if(left.isEmpty() || right.isEmpty()) {
+            return false
+        }
+        children.clear()
+        children.add(ExprNode.getRoot())
+        children.add(ExprNode.getRoot())
+        children[0].addChilds(left)
+        children[1].addChilds(right)
+        return true
+    }
     // convert token types to node types
     companion object {
         fun getRoot(): ExprNode {
